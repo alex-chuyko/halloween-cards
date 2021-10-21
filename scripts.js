@@ -35,10 +35,10 @@
 		imageNode.classList.add('card__front-image');
 		imageNode.setAttribute('src', 'resources/frontImage.png');
 		frontNode.appendChild(imageNode);
-		const text = document.createElement('span');
-		text.classList.add('text');
-		text.textContent = 'SKYWIND HALLOWEEN';
-		frontNode.appendChild(text);
+		const textNode = document.createElement('span');
+		textNode.classList.add('text');
+		textNode.textContent = 'SKYWIND HALLOWEEN';
+		frontNode.appendChild(textNode);
 		const prizeNode = document.createElement('div');
 		prizeNode.classList.add('card__back');
 		prizeNode.textContent = prize;

@@ -43,12 +43,12 @@
 	transform: rotateX(0deg)
 }
 
-.card.card_opened {
+/* .card.card_opened {
 	width: 400px;
 	height: 550px;
 	z-index: 10;
 	position: absolute;
-}
+} */
 
 .card.card_opened::after {
 	content: '';
