@@ -12,6 +12,8 @@
 		'EYES'
 	];
 	const cardsContainer = document.querySelector(".cards-container");
+	const centerX = 745;
+	const centerY = 173.5;
 
 	cardsContainer.addEventListener("click", (event) => {
 		const isOpened = cardsContainer.querySelector('.card.card_opened');
@@ -21,6 +23,21 @@
 		}
 
 		cardNode.classList.toggle('card_opened');
+		if (cardNode.classList.contains('card_opened')) {
+			cardNode.style.zIndex = 20;
+			const clientRect = cardNode.getBoundingClientRect();
+			const cardX = clientRect.x;
+			const cardY = clientRect.y;
+			cardNode.style.transform = `translate(${cardX > centerX ? centerX - cardX : cardX - centerX}px, ${centerY - cardY}px)`;
+			const cardGhost = document.createElement('div');
+			cardGhost.className = 'card-ghost';
+			// cardNode.parentNode.insertBefore(cardGhost, cardNode.nextSibling);
+		} else {
+			cardNode.style.zIndex = 0;
+			cardNode.style.transform = 'none';
+			// const cardGhost = document.querySelector('.card-ghost');
+			// cardGhost.parentNode.removeChild(cardGhost);
+		}
 		wasSelected = true;
 		window.localStorage.setItem('wasSelected', true);
 	});

@@ -35,6 +35,7 @@
 .card:hover:not(.card_opened) .card__front,
 .card:hover .card__back  {
 	filter: brightness(1.1);
+	/* transform: scale(1.1); */
 	box-shadow: -1px 2px 3px 1px rgb(66 66 66 / 20%), 0 3px 8px 4px rgb(66 66 66 / 10%);
 }
 
@@ -51,18 +52,12 @@
 	transform: rotateX(0deg);
 }
 
-/* .card.card_opened {
+.card.card_opened {
 	width: 400px;
 	height: 550px;
-	z-index: 10;
-	position: absolute;
-} */
-
-.card.card_opened::after {
-	content: '';
-	display: block;
-	width: 160px;
-	height: 200px;
+	/* position: absolute; */
+	top: 20%;
+	left: 40%;
 }
 
 .card__front {
@@ -136,10 +131,16 @@
 }
 
 .card__front-name {
+	width: 110px;
 	position: absolute;
 	bottom: 6%;
-	left: 7%;
+	right: 10%;
 	text-align: center;
 	font-size: 14px;
 	color: #ffd800;
+}
+
+.card-ghost {
+	width: 160px;
+	height: 200px;
 }
