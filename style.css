@@ -9,12 +9,9 @@
 }
 
 .cards-container {
-	/* display: flex; */
-	/* flex-wrap: wrap; */
-	/* gap: 10px 20px; */
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
-	grid-template-rows: 250px 250px 250px;
+	grid-template-columns: repeat(3, 200px);
+	grid-template-rows: repeat(3, 250px);
 	width: 600px;
 	height: 750px;
 }
@@ -23,13 +20,11 @@
 	width: 160px;
 	height: 200px;
 	border-radius: 10px;
-	/* box-shadow: 0 1px 3px rgb(0 0 0 / 16%), 0 1px 2px rgb(0 0 0 / 24%); */
 	cursor: pointer;
 	position: relative;
 	transform-style: preserve-3d;
-	perspective: 600px;
+	perspective: 800px;
 	transition: .5s;
-	flex-shrink: 0;
 }
 
 .card:hover:not(.card_opened) .card__front,
@@ -39,11 +34,12 @@
 	box-shadow: -1px 2px 3px 1px rgb(66 66 66 / 20%), 0 3px 8px 4px rgb(66 66 66 / 10%);
 }
 
+.card:hover:not(.card_opened) {
+	transform: scale(1.1);
+}
+
 .card.card_opened .card__front {
 	transform: rotateX(-180deg);
-	/* transform-style: preserve-3d;
-	perspective: 600px;
-	transition: .5s; */
 	visibility: hidden;
 }
 

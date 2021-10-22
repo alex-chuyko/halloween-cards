@@ -35,7 +35,7 @@
 			// cardNode.parentNode.insertBefore(cardGhost, cardNode.nextSibling);
 		} else {
 			cardNode.style.zIndex = 0;
-			cardNode.style.transform = 'none';
+			cardNode.style.removeProperty('transform');
 			// const cardGhost = document.querySelector('.card-ghost');
 			// cardGhost.parentNode.removeChild(cardGhost);
 		}
