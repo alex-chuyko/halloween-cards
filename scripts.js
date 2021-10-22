@@ -12,8 +12,6 @@
 		'EYES'
 	];
 	const cardsContainer = document.querySelector(".cards-container");
-	const centerX = 745;
-	const centerY = 173.5;
 
 	cardsContainer.addEventListener("click", (event) => {
 		const isOpened = cardsContainer.querySelector('.card.card_opened');
@@ -25,6 +23,9 @@
 		cardNode.classList.toggle('card_opened');
 		if (cardNode.classList.contains('card_opened')) {
 			cardNode.style.zIndex = 20;
+			const containerRect = cardsContainer.getBoundingClientRect();
+			const centerX = containerRect.x + 80;
+			const centerY = containerRect.y + 100;
 			const clientRect = cardNode.getBoundingClientRect();
 			const cardX = clientRect.x;
 			const cardY = clientRect.y;
