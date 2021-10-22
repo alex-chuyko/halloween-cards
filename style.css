@@ -75,6 +75,21 @@
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 	transition: ease-in-out 600ms;
+	background: linear-gradient(-45deg, #ee7752, #35034c);
+	background-size: 300% 300%;
+	animation: gradient 6s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .card__front-image {
