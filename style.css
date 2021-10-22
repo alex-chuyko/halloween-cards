@@ -127,7 +127,15 @@
 	transition: ease-in-out 600ms;
 }
 
-.text {
+.card__back-image {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.card__front-name {
 	position: absolute;
 	bottom: 6%;
 	left: 7%;

@@ -25,26 +25,17 @@
 		window.localStorage.setItem('wasSelected', true);
 	});
 
+	const firstCard = document.querySelector('.cards-container .card');
 	const fragment = document.createDocumentFragment();
-	prizes.forEach((prize) => {
-		const cardNode = document.createElement('div');
-		cardNode.classList.add('card');
-		const frontNode = document.createElement('div');
-		frontNode.classList.add('card__front');
-		const imageNode = document.createElement('img');
-		imageNode.classList.add('card__front-image');
-		imageNode.setAttribute('src', 'resources/frontImage.png');
-		frontNode.appendChild(imageNode);
-		const textNode = document.createElement('span');
-		textNode.classList.add('text');
-		textNode.textContent = 'SKYWIND HALLOWEEN';
-		frontNode.appendChild(textNode);
-		const prizeNode = document.createElement('div');
-		prizeNode.classList.add('card__back');
-		prizeNode.textContent = prize;
-		cardNode.appendChild(frontNode);
-		cardNode.appendChild(prizeNode);
-		fragment.appendChild(cardNode);
+	prizes.forEach((prize, index) => {
+		if (index === 0) {
+			firstCard.querySelector('.card__back-wish').textContent = prize;
+			return;
+		}
+
+		const cloneCard = firstCard.cloneNode(true);
+		cloneCard.querySelector('.card__back-wish').textContent = prize;
+		fragment.appendChild(cloneCard);
 	});
 
 	cardsContainer.appendChild(fragment);
