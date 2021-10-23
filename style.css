@@ -1,4 +1,16 @@
-﻿body {
+﻿@font-face {
+	font-family: 'OctoberCrow';
+	src: url('resources/fonts/October-Crow.woff') format('woff'),
+		url('resources/fonts/October\ Crow.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'WizardryNight';
+	src: url('resources/fonts/Wizardry-Night.woff') format('woff'),
+		url('resources/fonts/Wizardry\ Night.ttf') format('truetype');
+}
+
+body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -30,7 +42,6 @@
 .card:hover:not(.card_opened) .card__front,
 .card:hover .card__back  {
 	filter: brightness(1.1);
-	/* transform: scale(1.1); */
 	box-shadow: -1px 2px 3px 1px rgb(66 66 66 / 20%), 0 3px 8px 4px rgb(66 66 66 / 10%);
 }
 
@@ -48,27 +59,21 @@
 	transform: rotateX(0deg);
 }
 
-.card.card_opened {
-	/* width: 400px;
-	height: 550px; */
-}
-
 .card.card_big {
 	width: 400px;
 	height: 550px;
 }
 
-.card__front {
+.card__front,
+.card__back {
 	width: 100%;
 	height: 100%;
-	border: 3px solid #ce6e25; /* #fa6418; */
-	border-radius: 10px;
+	border: 3px solid;
+	box-sizing: border-box;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #35034c; /* #262323; */
-	transform: rotateX(0deg);
-	transition: .5s;
+	border-radius: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -76,9 +81,21 @@
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 	transition: ease-in-out 600ms;
+}
+
+.card__front {
+	border-color: #ce6e25;
+	transform: rotateX(0deg);
 	background: linear-gradient(-45deg, #ee7752, #35034c);
 	background-size: 300% 300%;
 	animation: gradient 6s ease infinite;
+}
+
+.card__back {
+	border-color: #000;
+	background-color: #ff732c;
+	visibility: hidden;
+	transform: rotateX(180deg);
 }
 
 @keyframes gradient {
@@ -99,28 +116,8 @@
 	top: 11%;
 }
 
-.card__back {
-	width: 100%;
-	height: 100%;
-	background-color: #ff732c;
-	border: 3px solid #000;
-	border-radius: 10px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	visibility: hidden;
-	transform: rotateX(180deg);
-	transition: .5s;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	transform-style: preserve-3d;
-	transition: ease-in-out 600ms;
-}
-
 .card__back-image {
+	display: none;
 	width: 50px;
 	height: 50px;
 	position: absolute;
@@ -129,27 +126,72 @@
 }
 
 .card__back-wish {
+	--text-border-color: white;
+	font-family: 'WizardryNight';
+	font-weight: bold;
+	line-height: 40px;
+	font-size: 35px;
+	text-shadow: -1px 0 var(--text-border-color), 0 1px var(--text-border-color), 1px 0 var(--text-border-color), 0 -1px var(--text-border-color);
 	width: 100%;
 	box-sizing: border-box;
 	overflow: hidden;
 	height: 100%;
-	font-size: 35px;
 	padding: 25px;
-	padding-top: 60px;
+	/* padding-top: 60px; */
 }
 
 .card__front-name {
+	font-family: 'OctoberCrow';
 	width: 110px;
 	position: absolute;
 	bottom: 6%;
 	right: 10%;
 	text-align: center;
-	font-size: 14px;
+	font-size: 20px;
 	color: #ffd800;
 	text-shadow: -1px 0 #000000cc, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.card-ghost {
-	width: 160px;
-	height: 200px;
+.card__back-background {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	z-index: -1;
+	opacity: 0.35;
+}
+
+.error-container {
+	width: 100vw;
+	height: 100vh;
+	visibility: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+}
+
+.error-text {
+	font-family: fantasy;
+	font-size: 45px;
+	font-weight: bold;
+	color: red;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.error-image {
+	border-radius: 50%;
+	filter: drop-shadow(2px 4px 6px black);
+}
+
+.error-container.error-conteiner_visible {
+	visibility: visible;
+}
+
+.test-container {
+	display: none;
 }
