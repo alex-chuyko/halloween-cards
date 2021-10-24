@@ -46,27 +46,16 @@ window.addEventListener('load', () => {
 		// 	return;
 		// }
 		cardNode.style.zIndex = 20;
-		cardNode.classList.toggle('card_big');
+		cardNode.classList.toggle('card_opened');
+		const containerScrollTop = cardsContainer.scrollTop;
 		const containerRect = cardsContainer.getBoundingClientRect();
-		const centerX = containerRect.x + 80;
-		const centerY = containerRect.y + 100;
+		const centerX = containerRect.x + 107;
+		const centerY = containerRect.y + 77;
 		const clientRect = cardNode.getBoundingClientRect();
 		const cardX = clientRect.x;
 		const cardY = clientRect.y;
-		cardNode.style.transform = `translate(${centerX - cardX}px, ${centerY - cardY}px)`;
+		cardNode.style.transform = `translate(${centerX - cardX}px, ${centerY - cardY - containerScrollTop}px)`;
 		wasSelected = true;
-		cardNode.classList.toggle('card_opened');
-
-		// if (cardNode.classList.contains('card_opened')) {
-		// 	const cardGhost = document.createElement('div');
-		// 	cardGhost.className = 'card-ghost';
-		// 	cardNode.parentNode.insertBefore(cardGhost, cardNode.nextSibling);
-		// 	if (cardNode.classList.contains('card_big')) {
-		// 		const cardGhost = document.querySelector('.card-ghost');
-		// 		cardGhost.parentNode.removeChild(cardGhost);
-		// 	} else {
-		// 	}
-		// }
 	});
 
 	const firstCard = document.querySelector('.cards-container .card');
