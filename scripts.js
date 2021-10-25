@@ -1,14 +1,16 @@
 ﻿let wasSelected = false;
 const wishes = [
-	'What I love most about Halloween is, I get to eat a lot of the candy my kids collect. Life is good. Halloween makes it better. Have a sweet one.',
-	'Do you know, some people believe the deceased come back from the dead to visit the living on Halloween? I hope all who come to visit you put a smile on your face this Halloween.', // 
-	'Halloween is a holiday that children of all ages can enjoy. I hope you and your inner child have loads of fun. Best Halloween wishes from someone who never wants to grow up.',
-	'If you see a pumpkin in my window, then you know it’s Halloween. I hope that it’s the kind of day that really makes you scream.',
-	'There’s a black cat in the window and a pumpkin on my stoop. On the lawn are a ghost and a witch. This tells me Halloween is very near, so Happy Halloween to you.',
-	'I hope your Halloween is all treats and no tricks…enjoy the candy and festivities!',
-	'When witches go riding, and black cats are seen, the moon laughs and whispers, ’tis near Halloween.',
-	'I wish you have a spooky time on Halloween. But don’t get too scared though.',
-	'Whether you dress like Garfield, Odie, or Pookie, I hope that your Halloween is spectacularly spooky! Happy Halloween.'
+	'Halloween fun is soon to begin. We hope your day is incredible and full of great treats. Have a bewitching night and a pleased Halloween.',
+	'Let the power of Halloween charge up your broomstick as well as your soul. Let the full moon bring all good things into your life.',
+	'Halloween is a holiday that children of all ages can enjoy. We hope you and your inner child have loads of fun. Best Halloween wishes from those who never want to grow up.',
+	'On Halloween, we hope you laugh until you cry, and we hope the Halloween treats you receive far outnumber the number of tricks played on you. Enjoy Halloween to the fullest.',
+	'There’s a black cat in the window and a pumpkin on the stoop. On the lawn are a ghost and a witch. This tells us Halloween is very near, so Happy Halloween to you.',
+	'Black cats skitter and ghouls patter by, it’s time to celebrate as All Hallow’s Eve has arrived!',
+	'We wish you have a happy Halloween filled with loads of great adventures! May the spirits and witches grant you all your wishes.',
+	'Why did the witch walk across the street? Boo-cause her broom was in the shop! Happy Halloween…have a “spook” tacular time this year!',
+	'Wishing you a Halloween night full of fun and joy. Make yourself prepared for the celebration as darkness takes over. The dead are awake once again!',
+	'Tonight, we are wishing you an unforgettable Halloween adventure filled with creepy memories. Happy Halloween!',
+	'When the dark night appears and everything turns into evil, just remember it’s Halloween, just chill!'
 ];
 
 const shuffleArray = (array) => {
@@ -61,16 +63,17 @@ window.addEventListener('load', () => {
 	const firstCard = document.querySelector('.cards-container .card');
 	const fragment = document.createDocumentFragment();
 	shuffleArray(wishes);
-	wishes.forEach((wish, index) => {
-		if (index === 0) {
+	for (let i = 0; i < 9; i++) {
+		const wish = wishes[i];
+		if (i === 0) {
 			firstCard.querySelector('.card__back-wish').textContent = wish;
-			return;
+			continue;
 		}
 
 		const cloneCard = firstCard.cloneNode(true);
 		cloneCard.querySelector('.card__back-wish').textContent = wish;
 		fragment.appendChild(cloneCard);
-	});
+	}
 
 	cardsContainer.appendChild(fragment);
 });
