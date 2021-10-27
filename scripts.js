@@ -1,4 +1,5 @@
 ﻿let wasSelected = false;
+const audio = new Audio('resources/sound.mp3');;
 const wishes = [
 	'Halloween fun is soon to begin. We hope your day is incredible and full of great treats. Have a bewitching night and a pleased Halloween.',
 	'Let the power of Halloween charge up your broomstick as well as your soul. Let the full moon bring all good things into your life.',
@@ -27,6 +28,11 @@ const shuffleArray = (array) => {
 
 window.addEventListener('load', () => {
 	const cardsContainer = document.querySelector(".cards-container");
+	const errorContainer = document.querySelector('.error');
+
+	const showWarning = () => {
+		errorContainer.classList.add('error_visible');
+	};
 
 	cardsContainer.addEventListener("click", (event) => {
 		const isOpened = cardsContainer.querySelector('.card.card_opened');
@@ -37,16 +43,24 @@ window.addEventListener('load', () => {
 
 		if (cardNode.classList.contains('card_opened')) {
 			cardNode.style.zIndex = 0;
-			cardNode.classList.toggle('card_big');
 			cardNode.classList.toggle('card_opened');
 			cardNode.style.removeProperty('transform');
 			return;
 		}
 
-		// if (wasSelected) {
-		// 	errorContainer.classList.toggle('error-conteiner_visible');
-		// 	return;
-		// }
+		if (wasSelected) {
+			showWarning();
+			if (!audio.ended) {
+				audio.play();
+			}
+			cardsContainer.addEventListener('animationend', () => {
+				cardsContainer.classList.toggle('cards-container_shake');
+			}, { once: true });
+			cardsContainer.classList.toggle('cards-container_shake');
+			return;
+		}
+
+		wasSelected = true;
 		cardNode.style.zIndex = 20;
 		cardNode.classList.toggle('card_opened');
 		const containerScrollTop = cardsContainer.scrollTop;
@@ -57,7 +71,6 @@ window.addEventListener('load', () => {
 		const cardX = clientRect.x;
 		const cardY = clientRect.y;
 		cardNode.style.transform = `translate(${centerX - cardX}px, ${centerY - cardY - containerScrollTop}px)`;
-		wasSelected = true;
 	});
 
 	const firstCard = document.querySelector('.cards-container .card');

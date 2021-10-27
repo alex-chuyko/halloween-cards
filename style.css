@@ -10,6 +10,18 @@
 		url('resources/fonts/Wizardry\ Night.ttf') format('truetype');
 }
 
+@font-face {
+	font-family: 'HalloweenMorning';
+	src: url('resources/fonts/Halloween-Morning.woff') format('woff'),
+		url('resources/fonts/Halloween\ Morning.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Psychopath';
+	src: url('resources/fonts/Psychopath.woff') format('woff'),
+		url('resources/fonts/Psychopath.ttf') format('truetype');
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -22,10 +34,43 @@
 	}
 }
 
+@keyframes shake {
+	10%, 90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%, 80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%, 50%, 70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%, 60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+@keyframes shake2 {
+	0% { transform: translate(1px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(3px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(3px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(1px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
 body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column-reverse;
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
@@ -44,6 +89,14 @@ body {
 	max-height: calc(100% - 40px);
 	overflow: auto;
 	padding: 20px;
+	position: relative;
+}
+
+.cards-container_shake {
+	animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
 }
 
 .card {
@@ -123,67 +176,60 @@ body {
 .card__front-title {
 	width: 7rem;
 	position: absolute;
-	bottom: 0.7rem; /* 5% */
-	right: 0.7rem; /* 7% */
+	bottom: 0.3rem; /* 5% */
+	right: 1rem; /* 7% */
 	font-family: 'OctoberCrow';
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	color: #ffd800;
+	line-height: 24px;
+	color: #ebcd20; /*#ffd800;*/
 	text-shadow: -1px 0 #000000cc, 0 1px black, 1px 0 black, 0 -1px black;
 	text-align: center;
 }
 
 .card__back-wish {
-	--text-border-color: white;
+	--text-border-color: #a3a8926b;
 	font-family: 'WizardryNight';
 	font-weight: bold;
 	font-size: 35px;
 	line-height: 40px;
 	text-shadow: -1px 0 var(--text-border-color), 0 1px var(--text-border-color), 1px 0 var(--text-border-color), 0 -1px var(--text-border-color);
 	width: 100%;
-	height: 100%;
+	max-height: 100%;
 	box-sizing: border-box;
 	overflow: hidden;
 	padding: 25px;
+	text-align: center;
+	white-space: break-spaces;
 }
 
-.card__back-background {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	z-index: -1;
-	opacity: 0.35;
-}
-
-.error-container {
-	width: 100vw;
-	height: 100vh;
-	visibility: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
+.error {
+	--text-border-color: orange;
+	--text-border-size: 1px;
+	width: 650px;
+	height: 70px;
+	font-family: 'HalloweenMorning';
+	font-size: 156px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-align: center;
+	color: black ; /*#eb3232; #6c660f*/
+	text-shadow: calc(-1 * var(--text-border-size)) 0 var(--text-border-color), 0 var(--text-border-size) var(--text-border-color), var(--text-border-size) 0 var(--text-border-color), 0 calc(-1 * var(--text-border-size)) var(--text-border-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	-webkit-backdrop-filter: blur(5px);
-	backdrop-filter: blur(5px);
+	position: absolute;
+	top: 50%;
+	visibility: hidden;
+	opacity: 0;
+	/* transform: scale(1.1); */
+	animation: shake2 1s ease infinite;
+	transition: visibility 0s linear 10s, opacity 0.33s linear;
 }
 
-.error-text {
-	font-family: fantasy;
-	font-size: 45px;
-	font-weight: bold;
-	color: red;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.error-image {
-	border-radius: 50%;
-	filter: drop-shadow(2px 4px 6px black);
-}
-
-.error-container.error-conteiner_visible {
+.error.error_visible {
 	visibility: visible;
+	opacity: 1;
+	transition-delay: 0s;
 }
