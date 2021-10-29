@@ -1,5 +1,4 @@
-﻿let wasSelected = false;
-const audio = new Audio('resources/sound.mp3');;
+﻿const audio = new Audio('resources/sound.mp3');;
 const wishes = [
 	'Halloween fun is soon to begin. We hope your day is incredible and full of great treats. Have a bewitching night and a pleased Halloween.',
 	'Let the power of Halloween charge up your broomstick as well as your soul. Let the full moon bring all good things into your life.',
@@ -27,6 +26,7 @@ const shuffleArray = (array) => {
 };
 
 window.addEventListener('load', () => {
+	let wasSelected = false;
 	const cardsContainer = document.querySelector(".cards-container");
 	const errorContainer = document.querySelector('.error');
 
